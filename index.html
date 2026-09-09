@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>NEXARIUM – Open Decentralized Web Infrastructure</title>
+  <meta
+    name="description"
+    content="NEXARIUM – Open Decentralized Web Infrastructure. Technical maintenance in progress until October 1, 2026."
+  >
+  <meta name="theme-color" content="#171817">
+
+  <!-- Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    /* =========================================================
+       NEXARIUM — COMPLETE PREMIUM DESIGN SYSTEM
+       ========================================================= */
+
+    :root {
+      --ink: #171817;
+      --ink-soft: #222421;
+      --slate: #30332f;
+      --cream: #f2efe7;
+      --cream-light: #f8f6f0;
+      --cream-dark: #e6e1d5;
+      --gold: #b7a276;
+      --gold-light: #cdbd96;
+      --white: #ffffff;
+
+      --font-display: "Playfair Display", Georgia, serif;
+      --font-sans: "Inter", Helvetica, Arial, sans-serif;
+
+      --container: 1360px;
+      --gutter: clamp(1.25rem, 4vw, 4.5rem);
+
+      --transition: 500ms cubic-bezier(.2,.65,.2,1);
+    }
+
+    /* ---------------------------------------------------------
+       RESET
+       --------------------------------------------------------- */
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--font-sans);
+      font-weight: 400;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img,
+    svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    ::selection {
+      background: var(--gold);
+      color: var(--ink);
+    }
+
+    /* ---------------------------------------------------------
+       PAGE FRAME
+       --------------------------------------------------------- */
+
+    .site {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .site::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 20;
+      opacity: .025;
+      background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+    }
+
+    .container {
+      width: min(100% - (var(--gutter) * 2), var(--container));
+      margin-inline: auto;
+    }
+
+    /* ---------------------------------------------------------
+       HEADER
+       --------------------------------------------------------- */
+
+    .header {
+      position: relative;
+      z-index: 10;
+      padding: 1.5rem 0;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: .8rem;
+      color: var(--ink);
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+
+    .brand-mark {
+      width: 26px;
+      height: 26px;
+      position: relative;
+      border: 1px solid var(--ink);
+      border-radius: 50%;
+      transition:
+        transform var(--transition),
+        border-color var(--transition);
+    }
+
+    .brand-mark::before,
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      background: var(--ink);
+      transition: transform var(--transition);
+    }
+
+    .brand-mark::before {
+      width: 1px;
+      height: 100%;
+      left: 50%;
+      top: 0;
+    }
+
+    .brand-mark::after {
+      width: 100%;
+      height: 1px;
+      left: 0;
+      top: 50%;
+    }
+
+    .brand:hover .brand-mark {
+      transform: rotate(45deg);
+      border-color: var(--gold);
+    }
+
+    .brand:hover .brand-mark::before,
+    .brand:hover .brand-mark::after {
+      background: var(--gold);
+    }
+
+    .header-domain {
+      color: #77766f;
+      font-size: .65rem;
+      font-weight: 500;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    /* ---------------------------------------------------------
+       HERO
+       --------------------------------------------------------- */
+
+    .hero {
+      position: relative;
+      flex: 1;
+      min-height: min(78vh, 820px);
+      display: flex;
+      align-items: center;
+      padding: clamp(5rem, 12vw, 10rem) 0 clamp(6rem, 13vw, 11rem);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: min(52vw, 720px);
+      height: min(52vw, 720px);
+      right: -18%;
+      top: 8%;
+      border-radius: 50%;
+      border: 1px solid rgba(183, 162, 118, .22);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: min(36vw, 500px);
+      height: min(36vw, 500px);
+      right: -7%;
+      top: 19%;
+      border-radius: 50%;
+      border: 1px solid rgba(23, 24, 23, .08);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-kicker {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      color: #76756d;
+      font-size: .68rem;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      animation: fadeUp .9s both;
+    }
+
+    .hero-kicker::before {
+      content: "";
+      width: 42px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .hero-title {
+      max-width: 1080px;
+      margin: 0;
+      color: var(--ink);
+      font-family: var(--font-display);
+      font-size: clamp(3.2rem, 9vw, 8.8rem);
+      font-weight: 400;
+      letter-spacing: -.055em;
+      line-height: .91;
+      animation: fadeUp 1s .08s both;
+    }
+
+    .hero-title em {
+      color: #77756d;
+      font-style: normal;
+    }
+
+    .hero-bottom {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      margin-top: clamp(4rem, 8vw, 7rem);
+      animation: fadeUp 1s .18s both;
+    }
+
+    .hero-description {
+      max-width: 580px;
+      margin: 0;
+      color: #4c4d48;
+      font-size: clamp(1rem, 1.5vw, 1.18rem);
+      font-weight: 300;
+      line-height: 1.75;
+    }
+
+    .maintenance {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      max-width: 440px;
+      padding-top: 1.1rem;
+      border-top: 1px solid rgba(23, 24, 23, .2);
+    }
+
+    .status-dot {
+      flex: 0 0 auto;
+      width: 7px;
+      height: 7px;
+      margin-top: .55rem;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 5px rgba(183, 162, 118, .12);
+      animation: pulse 2.5s infinite;
+    }
+
+    .maintenance p {
+      margin: 0;
+      color: #55564f;
+      font-size: .78rem;
+      font-weight: 500;
+      letter-spacing: .035em;
+      line-height: 1.7;
+    }
+
+    .maintenance strong {
+      display: block;
+      margin-bottom: .2rem;
+      color: var(--ink);
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .17em;
+      text-transform: uppercase;
+    }
+
+    /* ---------------------------------------------------------
+       VISUAL DIVIDER
+       --------------------------------------------------------- */
+
+    .divider {
+      position: relative;
+      height: 1px;
+      background: rgba(23, 24, 23, .14);
+    }
+
+    .divider::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 74px;
+      height: 2px;
+      transform: translateY(-50%);
+      background: var(--gold);
+    }
+
+    /* ---------------------------------------------------------
+       FOOTER
+       --------------------------------------------------------- */
+
+    .footer {
+      position: relative;
+      background: var(--ink);
+      color: var(--cream);
+      padding: 4.5rem 0 2rem;
+      overflow: hidden;
+    }
+
+    .footer::before {
+      content: "";
+      position: absolute;
+      width: 650px;
+      height: 650px;
+      right: -320px;
+      top: -430px;
+      border: 1px solid rgba(205, 189, 150, .16);
+      border-radius: 50%;
+    }
+
+    .footer::after {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      right: -205px;
+      top: -315px;
+      border: 1px solid rgba(205, 189, 150, .09);
+      border-radius: 50%;
+    }
+
+    .footer-main {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 4rem;
+      padding-bottom: 4.5rem;
+    }
+
+    .footer-identity {
+      max-width: 620px;
+    }
+
+    .footer-label {
+      margin: 0 0 1.3rem;
+      color: var(--gold-light);
+      font-size: .63rem;
+      font-weight: 600;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+    }
+
+    .footer-title {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 5.6rem);
+      font-weight: 400;
+      letter-spacing: -.045em;
+      line-height: .95;
+    }
+
+    .footer-subtitle {
+      margin: 1.5rem 0 0;
+      color: #aaa9a1;
+      font-size: .78rem;
+      font-weight: 400;
+      letter-spacing: .045em;
+    }
+
+    .footer-links {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.3rem;
+    }
+
+    .footer-column-title {
+      margin: 0 0 1rem;
+      color: #74756f;
+      font-size: .61rem;
+      font-weight: 600;
+      letter-spacing: .19em;
+      text-transform: uppercase;
+    }
+
+    .footer-list {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: .65rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .footer-link {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      color: var(--cream);
+      font-size: .82rem;
+      font-weight: 400;
+      transition:
+        color var(--transition),
+        transform var(--transition);
+    }
+
+    .footer-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -.3rem;
+      width: 100%;
+      height: 1px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform var(--transition);
+    }
+
+    .footer-link:hover {
+      color: var(--gold-light);
+      transform: translateX(4px);
+    }
+
+    .footer-link:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .footer-bottom {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+      padding-top: 1.7rem;
+      border-top: 1px solid rgba(242, 239, 231, .13);
+    }
+
+    .footer-credit {
+      color: #777871;
+      font-size: .62rem;
+      letter-spacing: .07em;
+    }
+
+    .footer-signature {
+      color: #aaa9a1;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-style: italic;
+    }
+
+    /* ---------------------------------------------------------
+       RESPONSIVE — TABLET
+       --------------------------------------------------------- */
+
+    @media (min-width: 700px) {
+
+      .header {
+        padding: 2rem 0;
+      }
+
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-bottom {
+        grid-template-columns: minmax(0, 1fr) minmax(260px, .55fr);
+        align-items: start;
+      }
+
+      .footer-main {
+        grid-template-columns: 1.2fr .8fr;
+        gap: 5rem;
+      }
+
+      .footer-links {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-bottom {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+
+    /* ---------------------------------------------------------
+       RESPONSIVE — DESKTOP
+       --------------------------------------------------------- */
+
+    @media (min-width: 1024px) {
+
+      .hero {
+        min-height: 75vh;
+      }
+
+      .hero-title {
+        max-width: 1050px;
+      }
+
+      .footer {
+        padding-top: 6.5rem;
+      }
+
+      .footer-main {
+        grid-template-columns: 1.4fr .9fr;
+        gap: 8rem;
+      }
+
+      .footer-links {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    /* ---------------------------------------------------------
+       LARGE DESKTOP
+       --------------------------------------------------------- */
+
+    @media (min-width: 1400px) {
+
+      .hero {
+        padding-top: 11rem;
+        padding-bottom: 12rem;
+      }
+
+      .hero-title {
+        font-size: 8.6rem;
+      }
+    }
+
+    /* ---------------------------------------------------------
+       MOTION
+       --------------------------------------------------------- */
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%,
+      100% {
+        box-shadow: 0 0 0 4px rgba(183, 162, 118, .1);
+      }
+
+      50% {
+        box-shadow: 0 0 0 8px rgba(183, 162, 118, .025);
+      }
+    }
+
+    /* ---------------------------------------------------------
+       ACCESSIBILITY
+       --------------------------------------------------------- */
+
+    :focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 5px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="site">
+
+    <!-- =======================================================
+         HEADER
+         ======================================================= -->
+
+    <header class="header">
+      <div class="container header-inner">
+
+        <a
+          class="brand"
+          href="https://nexarium.us"
+          aria-label="NEXARIUM home"
+        >
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span>NEXARIUM</span>
+        </a>
+
+        <span class="header-domain">
+          Open Decentralized Infrastructure
+        </span>
+
+      </div>
+    </header>
+
+
+    <!-- =======================================================
+         MAIN
+         ======================================================= -->
+
+    <main>
+
+      <section class="hero" aria-labelledby="page-title">
+        <div class="container">
+
+          <div class="hero-grid">
+
+            <div>
+              <div class="hero-kicker">
+                <span>Open Web Infrastructure</span>
+              </div>
+
+              <h1 class="hero-title" id="page-title">
+                NEXARIUM
+                <br>
+                <em>Open Decentralized</em>
+                <br>
+                Web Infrastructure
+              </h1>
+            </div>
+
+
+            <div class="hero-bottom">
+
+              <p class="hero-description">
+                A contemporary infrastructure for open, decentralized,
+                resilient and sovereign digital environments.
+              </p>
+
+              <div class="maintenance" role="status">
+
+                <span class="status-dot" aria-hidden="true"></span>
+
+                <p>
+                  <strong>Technical notice</strong>
+                  Technical maintenance in progress until October 1, 2026.
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <div class="container">
+        <div class="divider" aria-hidden="true"></div>
+      </div>
+
+    </main>
+
+
+    <!-- =======================================================
+         FOOTER
+         ======================================================= -->
+
+    <footer class="footer">
+      <div class="container">
+
+        <div class="footer-main">
+
+          <div class="footer-identity">
+
+            <p class="footer-label">
+              Visual Culture · Contemporary Practice
+            </p>
+
+            <h2 class="footer-title">
+              NVO987
+            </h2>
+
+            <p class="footer-subtitle">
+              Culture Visuelle Moderne et Contemporaine
+            </p>
+
+          </div>
+
+
+          <div class="footer-links">
+
+            <div class="footer-column">
+
+              <p class="footer-column-title">
+                Contact
+              </p>
+
+              <ul class="footer-list">
+
+                <li>
+                  <a
+                    class="footer-link"
+                    href="mailto:contact@nvo987.fr"
+                  >
+                    contact@nvo987.fr
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    class="footer-link"
+                    href="mailto:contact@nexarium.us"
+                  >
+                    contact@nexarium.us
+                  </a>
+                </li>
+
+              </ul>
+
+            </div>
+
+
+            <div class="footer-column">
+
+              <p class="footer-column-title">
+                Digital Identity
+              </p>
+
+              <ul class="footer-list">
+
+                <li>
+                  <a
+                    class="footer-link"
+                    href="https://identity.nvo987.us"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    identity.nvo987.us
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    class="footer-link"
+                    href="https://www.nvo987.fr"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    www.nvo987.fr
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    class="footer-link"
+                    href="https://nexarium.us"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    nexarium.us
+                  </a>
+                </li>
+
+              </ul>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+          <span class="footer-credit">
+            © 2026 NVO987 · Open Cultural &amp; Digital Infrastructure
+          </span>
+
+          <span class="footer-signature">
+            Nicholas Van-Orton
+          </span>
+
+        </div>
+
+      </div>
+    </footer>
+
+  </div>
+
+</body>
+</html>

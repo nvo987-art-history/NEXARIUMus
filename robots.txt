@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# Sitemap
 Sitemap: https://nexarium.us/sitemap.xml
